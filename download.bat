@@ -24,7 +24,7 @@ del BepInEx.zip
 
 echo === Downloading RecNetPlugin.dll into BepInEx\plugins ===
 if not exist "BepInEx\plugins" mkdir "BepInEx\plugins"
-curl -f -L -o "BepInEx\plugins\RecNetPlugin.dll" https://github.com/djdevin/recnet-plugin/releases/download/0.0.2/RecNetPlugin.dll || goto :error
+curl -f -L -o "BepInEx\plugins\RecNetPlugin.dll" https://github.com/djdevin/recnet-plugin/releases/download/0.0.3/RecNetPlugin.dll || goto :error
 
 echo === Extracting bundled global-metadata into RecRoom_Data\il2cpp_data\Metadata ===
 tar -xf "RecRoom_Data\il2cpp_data\Metadata\global-metadata.zip" -C "RecRoom_Data\il2cpp_data\Metadata" || goto :error
