@@ -8,7 +8,7 @@ Check out this repository or extract the ZIP: https://github.com/djdevin/recflar
 
 ## Installing
 
-1. Run `download.bat`. The script will download the game client from Steam and apply patches and configuration.
+1. Run `download.bat`. The script will ask whether you have Rec Room in your Steam library: if you do, it downloads the game client from Steam (DepotDownloader); if not, it syncs the game files from a mirror instead. Either way it then applies patches and configuration.
 2. Run `RecRoomScreen.bat` or `RecRoomVR.bat`
 
 ## Custom server

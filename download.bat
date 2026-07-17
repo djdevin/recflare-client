@@ -8,6 +8,10 @@ set "GREEN=%ESC%[92m"
 set "RED=%ESC%[91m"
 set "RESET=%ESC%[0m"
 
+choice /C YN /M "Do you have Rec Room in your Steam library? "
+if errorlevel 2 goto :bucket
+
+:steam
 set "STEAM_USERNAME="
 set /p STEAM_USERNAME=Enter your Steam username:
 if "%STEAM_USERNAME%"=="" (
@@ -16,27 +20,49 @@ if "%STEAM_USERNAME%"=="" (
 )
 
 echo %CYAN%=== Installing DepotDownloader ===%RESET%
-curl -f -L -o DepotDownloader.zip https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_3.4.0/DepotDownloader-windows-x64.zip || goto :error
+curl -s -f -L -o DepotDownloader.zip https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_3.4.0/DepotDownloader-windows-x64.zip || goto :error
 if not exist "DepotDownloader" mkdir "DepotDownloader"
 tar -xf DepotDownloader.zip -C DepotDownloader || goto :error
 del DepotDownloader.zip
 
-echo %CYAN%=== Downloading Rec Room depot via DepotDownloader (will prompt for Steam password) ===%RESET%
+echo %CYAN%=== Downloading depot via DepotDownloader (will prompt for Steam password) ===%RESET%
 DepotDownloader\DepotDownloader.exe -remember-password -app 471710 -depot 471711 -manifest 7859140924515540835 -dir . -username "%STEAM_USERNAME%" || goto :error
+goto :patch
 
+:bucket
+set "CLIENT_MD5=5187c12beb4b43d45ce711817e38657c"
+if not exist client.zip goto :download
+echo %CYAN%=== Checking existing client.zip ===%RESET%
+set "LOCAL_MD5="
+for /f "skip=1 delims=" %%h in ('certutil -hashfile client.zip MD5') do if not defined LOCAL_MD5 set "LOCAL_MD5=%%h"
+if /i "%LOCAL_MD5%"=="%CLIENT_MD5%" (
+    echo %GREEN%client.zip already matches expected hash - skipping download.%RESET%
+    goto :extract
+)
+echo %RED%client.zip does not match expected hash - redownloading.%RESET%
+
+:download
+echo %CYAN%=== Downloading game client from mirror ===%RESET%
+curl -f -L -o client.zip https://s3.g.megas4.com/2koayuyiwxv4groxzwdbbxg43cwustavrkvfb/recflare/client.zip || goto :error
+
+:extract
+echo %CYAN%=== Extracting game client ===%RESET%
+tar -xf client.zip -C . || goto :error
+
+:patch
 echo %CYAN%=== Writing steam_appid.txt ===%RESET%
 >steam_appid.txt echo 480
 
 echo %CYAN%=== Downloading BepInEx and extracting to this directory ===%RESET%
-curl -f -L -o BepInEx.zip https://github.com/BepInEx/BepInEx/releases/download/v6.0.0-pre.2/BepInEx-Unity.IL2CPP-win-x64-6.0.0-pre.2.zip || goto :error
+curl -s -f -L -o BepInEx.zip https://github.com/BepInEx/BepInEx/releases/download/v6.0.0-pre.2/BepInEx-Unity.IL2CPP-win-x64-6.0.0-pre.2.zip || goto :error
 tar -xf BepInEx.zip -C . || goto :error
 del BepInEx.zip
 
 echo %CYAN%=== Downloading RecNetPlugin.dll into BepInEx\plugins ===%RESET%
 if not exist "BepInEx\plugins" mkdir "BepInEx\plugins"
-curl -f -L -o "BepInEx\plugins\RecNetPlugin.dll" https://github.com/djdevin/recnet-plugin/releases/download/0.0.3/RecNetPlugin.dll || goto :error
+curl -s -f -L -o "BepInEx\plugins\RecNetPlugin.dll" https://github.com/djdevin/recnet-plugin/releases/download/0.0.3/RecNetPlugin.dll || goto :error
 
-echo %CYAN%=== Extracting bundled global-metadata into RecRoom_Data\il2cpp_data\Metadata ===%RESET%
+echo %CYAN%=== Extracting patched global-metadata ===%RESET%
 tar -xf "RecRoom_Data\il2cpp_data\Metadata\global-metadata.zip" -C "RecRoom_Data\il2cpp_data\Metadata" || goto :error
 
 echo %GREEN%=== Done ===%RESET%
