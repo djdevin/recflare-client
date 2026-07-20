@@ -1,6 +1,8 @@
 # RecFlare client
 
-Autoamtic setup of the game client to connect to the testing [RecFlare](https://github.com/djdevin/recflare) instance.
+Automatic download and setup of a game client to connect to [RecFlare](https://github.com/djdevin/recflare).
+
+[BepInEx](https://github.com/BepInEx/BepInEx) and the [RecNet Plugin](https://github.com/djdevin/recnet-plugin) are installed as part of the setup.
 
 ## Download
 
