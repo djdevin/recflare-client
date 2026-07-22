@@ -26,7 +26,7 @@ tar -xf DepotDownloader.zip -C DepotDownloader || goto :error
 del DepotDownloader.zip
 
 echo %CYAN%=== Downloading depot via DepotDownloader (will prompt for Steam password) ===%RESET%
-DepotDownloader\DepotDownloader.exe -remember-password -app 471710 -depot 471711 -manifest 7859140924515540835 -dir . -username "%STEAM_USERNAME%" || goto :error
+DepotDownloader\DepotDownloader.exe -remember-password -app 471710 -depot 471711 -manifest 3668280474894052876 -dir . -username "%STEAM_USERNAME%" || goto :error
 goto :patch
 
 :bucket
@@ -62,8 +62,9 @@ echo %CYAN%=== Downloading RecNetPlugin.dll into BepInEx\plugins ===%RESET%
 if not exist "BepInEx\plugins" mkdir "BepInEx\plugins"
 curl -s -f -L -o "BepInEx\plugins\RecNetPlugin.dll" https://github.com/djdevin/recnet-plugin/releases/download/0.0.3/RecNetPlugin.dll || goto :error
 
-echo %CYAN%=== Extracting patched global-metadata ===%RESET%
-tar -xf "RecRoom_Data\il2cpp_data\Metadata\global-metadata.zip" -C "RecRoom_Data\il2cpp_data\Metadata" || goto :error
+rem This is no longer needed after recnet-plugin/Patches/ImageSigningPatch.cs
+rem echo %CYAN%=== Extracting patched global-metadata ===%RESET%
+rem tar -xf "RecRoom_Data\il2cpp_data\Metadata\global-metadata.zip" -C "RecRoom_Data\il2cpp_data\Metadata" || goto :error
 
 echo %GREEN%=== Done ===%RESET%
 pause
