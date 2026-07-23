@@ -60,7 +60,7 @@ del BepInEx.zip
 
 echo %CYAN%=== Downloading RecNetPlugin.dll into BepInEx\plugins ===%RESET%
 if not exist "BepInEx\plugins" mkdir "BepInEx\plugins"
-curl -s -f -L -o "BepInEx\plugins\RecNetPlugin.dll" https://github.com/djdevin/recnet-plugin/releases/download/0.0.3/RecNetPlugin.dll || goto :error
+curl -s -f -L -o "BepInEx\plugins\RecNetPlugin.dll" https://github.com/djdevin/recnet-plugin/releases/download/20230414.1/RecNetPlugin.dll || goto :error
 
 echo %GREEN%=== Done ===%RESET%
 pause
