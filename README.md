@@ -4,7 +4,7 @@ Automatic download and setup of a game client to play [RecFlare](https://github.
 
 [BepInEx](https://github.com/BepInEx/BepInEx) and the [RecNet Plugin](https://github.com/djdevin/recnet-plugin) are installed as part of the setup.
 
-## Download and play
+## Download/update and play
 
 1. Check out this repository or extract the ZIP: https://github.com/djdevin/recflare-client/archive/refs/heads/master.zip
 2. Run `download.bat`. The script will ask whether you have Rec Room in your Steam library: if you do, it downloads the game client from Steam (DepotDownloader); if not, it syncs the game files from a mirror instead. Either way it then applies patches and configuration.
