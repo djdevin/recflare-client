@@ -30,7 +30,7 @@ DepotDownloader\DepotDownloader.exe -remember-password -app 471710 -depot 471711
 goto :patch
 
 :bucket
-set "CLIENT_MD5=5187c12beb4b43d45ce711817e38657c"
+set "CLIENT_MD5=4c4a94624eba99028bb36445ccb03253"
 if not exist client.zip goto :download
 echo %CYAN%=== Checking existing client.zip ===%RESET%
 set "LOCAL_MD5="
