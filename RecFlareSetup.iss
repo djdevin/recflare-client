@@ -14,6 +14,8 @@ PrivilegesRequired=lowest
 ; tar.exe ships with Windows 10 1803+; the downloads and extraction depend on it
 MinVersion=10.0.17134
 WizardStyle=modern
+SetupIconFile=icon.ico
+UninstallDisplayIcon={app}\icon.ico
 DisableProgramGroupPage=yes
 OutputBaseFilename=RecFlareSetup
 SolidCompression=yes
@@ -23,6 +25,7 @@ UninstallDisplayName=RecFlare
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
+Source: "icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "RecRoomScreen.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "RecRoomVR.bat"; DestDir: "{app}"; Flags: ignoreversion
 ; Points the client at the RecFlare server. Never overwrite: users may have
@@ -30,10 +33,10 @@ Source: "RecRoomVR.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "BepInEx\config\net.rec.plugin.cfg"; DestDir: "{app}\BepInEx\config"; Flags: onlyifdoesntexist
 
 [Icons]
-Name: "{autoprograms}\RecFlare (Desktop mode)"; Filename: "{app}\recroom.exe"; Parameters: "+forcemode:screen"; WorkingDir: "{app}"
-Name: "{autoprograms}\RecFlare (VR)"; Filename: "{app}\recroom.exe"; Parameters: "+forcemode:vr"; WorkingDir: "{app}"
-Name: "{autodesktop}\RecFlare (Desktop mode)"; Filename: "{app}\recroom.exe"; Parameters: "+forcemode:screen"; WorkingDir: "{app}"; Tasks: desktopicon
-Name: "{autodesktop}\RecFlare (VR)"; Filename: "{app}\recroom.exe"; Parameters: "+forcemode:vr"; WorkingDir: "{app}"; Tasks: desktopicon
+Name: "{autoprograms}\RecFlare (Desktop mode)"; Filename: "{app}\recroom.exe"; Parameters: "+forcemode:screen"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
+Name: "{autoprograms}\RecFlare (VR)"; Filename: "{app}\recroom.exe"; Parameters: "+forcemode:vr"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
+Name: "{autodesktop}\RecFlare (Desktop mode)"; Filename: "{app}\recroom.exe"; Parameters: "+forcemode:screen"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"; Tasks: desktopicon
+Name: "{autodesktop}\RecFlare (VR)"; Filename: "{app}\recroom.exe"; Parameters: "+forcemode:vr"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"; Tasks: desktopicon
 
 [UninstallDelete]
 ; The game files are downloaded, not installed, so Inno does not track them;
