@@ -28,9 +28,10 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Source: "icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "RecRoomScreen.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "RecRoomVR.bat"; DestDir: "{app}"; Flags: ignoreversion
-; Points the client at the RecFlare server. Never overwrite: users may have
-; edited it to use their own instance (see README "Custom server").
-Source: "BepInEx\config\net.rec.plugin.cfg"; DestDir: "{app}\BepInEx\config"; Flags: onlyifdoesntexist
+; Points the client at the RecFlare server. Always overwrite so reinstalls pick
+; up server changes; to use your own instance, fork and edit this file, then
+; rebuild the installer (see README "Custom server").
+Source: "BepInEx\config\net.rec.plugin.cfg"; DestDir: "{app}\BepInEx\config"; Flags: ignoreversion
 
 [Icons]
 Name: "{autoprograms}\RecFlare (Desktop mode)"; Filename: "{app}\recroom.exe"; Parameters: "+forcemode:screen"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
