@@ -50,7 +50,7 @@ const
   ClientURL = 'https://s3.g.megas4.com/2koayuyiwxv4groxzwdbbxg43cwustavrkvfb/recflare/client.zip';
   DepotDownloaderURL = 'https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_3.4.0/DepotDownloader-windows-x64.zip';
   BepInExURL = 'https://github.com/BepInEx/BepInEx/releases/download/v6.0.0-pre.2/BepInEx-Unity.IL2CPP-win-x64-6.0.0-pre.2.zip';
-  PluginURL = 'https://github.com/djdevin/recnet-plugin/releases/download/20230414.1/RecNetPlugin.dll';
+  PluginURL = 'https://github.com/djdevin/recnet-plugin/releases/download/20230414.2/RecNetPlugin.dll';
 
 var
   SourcePage: TInputOptionWizardPage;
